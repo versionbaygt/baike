@@ -21,3 +21,10 @@ st.write(""" Hello World
 Nice *test* how hard is this""")
 
 st.image('./BAIKElogo.png')
+
+
+st.write(""" # take picture """)
+picture = st.camera_input("Take a picture")
+
+if picture:
+     st.image(picture)
