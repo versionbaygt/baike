@@ -34,8 +34,8 @@ st.write(""" # take picture """)
 picture = st.camera_input("Take a picture")
 
 if picture:
-     st.image(picture)
-     # define ResNet50 model
+    st.image(picture)
+    # define ResNet50 model
     model = ResNet50(weights='imagenet')
     img = image.load_img(picture, target_size=(224, 224))
     img_array = image.img_to_array(img)
