@@ -19,3 +19,5 @@ st.write(pd.DataFrame({
 st.write(""" Hello World
 # Very nice
 Nice *test* how hard is this""")
+
+st.image('./BAIKElogo.png')
