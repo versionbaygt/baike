@@ -28,12 +28,30 @@ if img_file_buffer is not None:
 
     # Check the type of img_array:
     # Should output: <class 'numpy.ndarray'>
-    st.write(type(img_array))
 
     model = ResNet50(weights='imagenet')
     #img_array = image.img_to_array(img)
     img_batch = np.expand_dims(img_array, axis=0)
     img_preprocessed = preprocess_input(img_batch)
     prediction = model.predict(img_preprocessed)
-    st.write(f"Ik denk dat ik een {decode_predictions(prediction, top=3)[0][0][1]}. Met {round(decode_predictions(prediction, top=3)[0][0][2]*100)}% zekerheid.")
+    st.write(f"## Ik denk dat ik een {decode_predictions(prediction, top=3)[0][0][1]}. Met {round(decode_predictions(prediction, top=3)[0][0][2]*100)}% zekerheid.")
+
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+     # To read image file buffer as a PIL Image:
+    img = Image.open(uploaded_file)
+    img = img.resize((224,224))
+    # To convert PIL Image to numpy array:
+    img_array = np.array(img)
+
+    # Check the type of img_array:
+    # Should output: <class 'numpy.ndarray'>
+
+    model = ResNet50(weights='imagenet')
+    #img_array = image.img_to_array(img)
+    img_batch = np.expand_dims(img_array, axis=0)
+    img_preprocessed = preprocess_input(img_batch)
+    prediction = model.predict(img_preprocessed)
+    st.image(uploaded_file)
+    st.write(f"## Ik denk dat ik een {decode_predictions(prediction, top=3)[0][0][1]}. Met {round(decode_predictions(prediction, top=3)[0][0][2]*100)}% zekerheid.")
 
